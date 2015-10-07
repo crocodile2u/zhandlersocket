@@ -1,0 +1,7 @@
+/ext/**/*.zep.*
+/ext/zhandlersocket/*
+/ext/zhandlersocket.*
+/ext/.libs/zhandlersocket.*
+/ext/modules/zhandlersocket.*
+/ext/php_zhandlersocket.h
+.idea
