@@ -1,19 +1,34 @@
 namespace Zhandlersocket;
 
+/**
+ * HS Index encapsulation
+ */
+
 class Index {
+    // @var int next created index number
     static private next = 1;
+    // @var Client
     protected client {get};
+    // @var string
     protected dbname {get};
+    // @var string
     protected table {get};
+    // @var string
     protected idx {get};
+    // @var string[]
     protected cols {get};
+    // @var string[] Filter columns
     protected fcols = [] {get};
-    protected num {
-        get
-    };
+    // @var int this instance index number
+    protected num {get};
+    // @var bool
     protected readIndexOpen = false;
+    // @var bool
     protected writeIndexOpen = false;
 
+    /**
+     * Constructor. Set up index params.
+     */
     protected function __construct(<Client> client, string dbname, string table, string idx, array cols, fcols = null) {
         let this->client = client;
         let this->dbname = dbname;
@@ -50,8 +65,14 @@ class Index {
     public function getFcolumnIndex(string col) -> int|bool {
         return array_search(col, this->fcols);
     }
-
-    public function insert(array values) {
+    /**
+     * Insert a new row.
+     * Depending on whether AUTO_INCREMENT is used, the return value differs:
+     * - integer LAST INSERT ID for AUTO_INCREMENT mode;
+     * - bool TRUE for NON-AUTO_INCREMENT mode.
+     * For AUTO_INCREMENT mode, just pass NULL as the value for the AUTO_INCREMENT column
+     */
+    public function insert(array values) -> int|bool {
         this->ensureWriteIndex();
         var connection = this->client->getWriteConnection();
         var response = connection->send(Command::insert(this, values));
@@ -70,12 +91,13 @@ class Index {
             throw new CommunicationException("Failed inserting values in DB: " . join("\t", response));
         }
     }
-
+    // update row identified by ID
+    // values is an assoc [col1: val1,..]
     public function updateById(id, values) {
         var wc = this->createWhereClause(WhereClause::EQ, id);
         return this->updateByWhereClause(wc, values);
     }
-
+    // Update rows that match to WhereClause. Use with care and bear in mind the LIMIT that is set up in WhereClause
     public function updateByWhereClause(<WhereClause> wc, values) {
         this->ensureWriteIndex();
         var connection = this->client->getWriteConnection();
@@ -87,12 +109,17 @@ class Index {
             throw new CommunicationException("Failed updating values in DB: " . join("\t", response));
         }
     }
-
+    // increment values in a row specified by ID
     public function incrementById(id, values) {
         var wc = this->createWhereClause(WhereClause::EQ, id);
         return this->incrementByWhereClause(wc, values);
     }
-
+    // increment values in rows that match to WhereClause. Use with care and bear in mind the LIMIT that is set up in WhereClause
+    // in values, you only specify thos cols that need to be incremented + the ID column(s)
+    // Internally, a new index is created containing JUST the columns to be updated, because as a result of the increment request, all participating STRING cols
+    // will be updated to "0" if you leave them there.
+    // the implementation is quite poor and a very possible subject to change. However, it seems like the HS
+    // implementation of increment is quite poor either. Maybe I will just have to remove its support
     public function incrementByWhereClause(<WhereClause> wc, values) {
         var incIndex;
         let incIndex = new Index(this->client, this->dbname, this->table, this->idx, array_keys(values), this->fcols);
@@ -106,12 +133,12 @@ class Index {
             throw new CommunicationException("Failed updating values in DB: " . join("\t", response));
         }
     }
-
+    // delete a row by ID
     public function deleteById(id) {
         var wc = this->createWhereClause(WhereClause::EQ, id);
         return this->deleteByWhereClause(wc);
     }
-
+    // delete rows that match WhereClause. Use with care and bear in mind the LIMIT that is set up in WhereClause
     public function deleteByWhereClause(<WhereClause> wc) {
         this->ensureWriteIndex();
         var connection = this->client->getWriteConnection();
@@ -123,7 +150,7 @@ class Index {
             throw new CommunicationException("Failed updating values in DB: " . join("\t", response));
         }
     }
-
+    // make a numeric array out of assoc, in a way that will match the column numbers as they were passed to constructor
     public function mapValues(values) {
         var column, columnIndex, value, colValues = [];
         for column, value in values {
@@ -137,11 +164,11 @@ class Index {
         ksort(colValues);
         return colValues;
     }
-
+    // find rows by a bunc of IDs (equivalent of SQL IN clause)
     public function findMany(array ids, column = null) -> array {
         return this->createWhereClause("=", [0])->setIn(ids, column)->find();
     }
-
+    
     public function createWhereClause(string op, keyValues) -> <WhereClause> {
         return new WhereClause(this, op, keyValues);
     }
@@ -181,7 +208,6 @@ class Index {
         for chunk in array_chunk(response, numColumns) {
             let ret[] = array_combine(this->cols, chunk);
         }
-        //var_dump(ret);
         return ret;
     }
 

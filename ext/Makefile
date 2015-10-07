@@ -11,7 +11,7 @@ SHLIB_DL_SUFFIX_NAME = so
 ZEND_EXT_TYPE = zend_extension
 RE2C = re2c
 AWK = gawk
-shared_objects_zhandlersocket = zhandlersocket.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/hash.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/extended/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/math.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo zhandlersocket/zexception.lo zhandlersocket/logger.lo zhandlersocket/client.lo zhandlersocket/command.lo zhandlersocket/communicationexception.lo zhandlersocket/connection.lo zhandlersocket/connectionexception.lo zhandlersocket/debuglogger.lo zhandlersocket/duplicateentryexception.lo zhandlersocket/encoder.lo zhandlersocket/index.lo zhandlersocket/nulllogger.lo zhandlersocket/whereclause.lo zhandlersocket/whereclausefilter.lo
+shared_objects_zhandlersocket = zhandlersocket.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/hash.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/extended/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/math.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo zhandlersocket/zexception.lo zhandlersocket/logger.lo zhandlersocket/client.lo zhandlersocket/command.lo zhandlersocket/communicationexception.lo zhandlersocket/connection.lo zhandlersocket/connectionexception.lo zhandlersocket/debuglogger.lo zhandlersocket/duplicateentryexception.lo zhandlersocket/encoder.lo zhandlersocket/index.lo zhandlersocket/log.lo zhandlersocket/nulllogger.lo zhandlersocket/whereclause.lo zhandlersocket/whereclausefilter.lo
 PHP_PECL_EXTENSION = zhandlersocket
 ZHANDLERSOCKET_SHARED_LIBADD =
 PHP_MODULES = $(phplibdir)/zhandlersocket.la
@@ -245,6 +245,8 @@ zhandlersocket/encoder.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlerso
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/encoder.zep.c -o zhandlersocket/encoder.lo 
 zhandlersocket/index.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/index.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/index.zep.c -o zhandlersocket/index.lo 
+zhandlersocket/log.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/log.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/log.zep.c -o zhandlersocket/log.lo 
 zhandlersocket/nulllogger.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c -o zhandlersocket/nulllogger.lo 
 zhandlersocket/whereclause.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/whereclause.zep.c

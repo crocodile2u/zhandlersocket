@@ -20,6 +20,7 @@ if test "$PHP_ZHANDLERSOCKET" = "yes"; then
 	zhandlersocket/duplicateentryexception.zep.c
 	zhandlersocket/encoder.zep.c
 	zhandlersocket/index.zep.c
+	zhandlersocket/log.zep.c
 	zhandlersocket/nulllogger.zep.c
 	zhandlersocket/whereclause.zep.c
 	zhandlersocket/whereclausefilter.zep.c "

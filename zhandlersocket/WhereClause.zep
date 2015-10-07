@@ -1,25 +1,27 @@
 namespace Zhandlersocket;
 
 class WhereClause {
-
+    // comparison types
     const EQ = "=";
     const GT = ">";
     const GTE = ">=";
     const LT = "<";
     const LTE = "<=";
-
+    // @var Index
     private index;
-
+    // operation (one of comparison types)
     private op;
-
+    // index column value(s) to filter by
     private keyValues = [];
 
     private limit = 1;
     private offset = 0;
 
+    // IN clause spec
     private inColumn;
     private inValues = [];
 
+    // additional FILTERs
     private filters = [];
 
     public function __construct(<Index> index, string op, keyValues) {
@@ -38,13 +40,13 @@ class WhereClause {
         return this;
     }
 
-    public function setIn(array values, column = null) {
+    public function setIn(array values, column = null) -> <WhereClause> {
         let this->inColumn = this->index->getColumnIndex(column);
         let this->inValues = values;
         return this->setLimit(count(values));
     }
 
-    public function addFilter(string op, string column, value, string type = WhereClauseFilter::TYPE_FILTER) {
+    public function addFilter(string op, string column, value, string type = WhereClauseFilter::TYPE_FILTER) -> <WhereClause> {
         var columnIndex = this->index->getFcolumnIndex(column);
         let this->filters[] = new WhereClauseFilter(op, columnIndex, value, type);
         return this;
@@ -54,7 +56,7 @@ class WhereClause {
         return this->index->findByWhereClause(this);
     }
 
-    public function toArray() {
+    public function toArray() -> array {
         var tokens = [
             this->op,
             count(this->keyValues)

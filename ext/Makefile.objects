@@ -66,6 +66,8 @@ zhandlersocket/encoder.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlerso
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/encoder.zep.c -o zhandlersocket/encoder.lo 
 zhandlersocket/index.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/index.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/index.zep.c -o zhandlersocket/index.lo 
+zhandlersocket/log.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/log.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/log.zep.c -o zhandlersocket/log.lo 
 zhandlersocket/nulllogger.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c -o zhandlersocket/nulllogger.lo 
 zhandlersocket/whereclause.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/whereclause.zep.c

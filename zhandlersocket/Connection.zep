@@ -1,48 +1,59 @@
 namespace Zhandlersocket;
 
+/**
+ * Hanslersocket connection encapsulation
+ */
+
 class Connection {
+
     const DEFAULT_CONNECTION_TIMEOUT = 5;
 
     const DEFAULT_IO_TIMEOUT = 1.0;
-
+    // @var string
     private host;
-
+    // @var int
     private port;
-
+    // @var int
     private connectionTimeout = self::DEFAULT_CONNECTION_TIMEOUT;
-
-    private ioTimeout = self::DEFAULT_IO_TIMEOUT;
-
+    // Input/Output timeout
+    // @var int
+    private ioTimeout = self::DEFAULT_IO_TIMEOUT { set };
+    // @var bool
     private persistent;
-
+    // @var bool
     private connected = false;
-
+    // @var resource
     private connResource;
-
+    // @var Log
     private debugLog;
-
+    /**
+     * Constructor. Setup connection params, initialize Logger
+     */
     protected function __construct(string host = "127.0.0.1", int port, bool persistent = false) {
         let this->host = host;
         let this->port = port;
         let this->persistent = persistent;
         let this->debugLog = new NullLogger();
     }
-
+    /**
+     * Send a command and receive response.
+     * Response is parsed, decoded and returned as array of strings
+     */
     public function send(string cmd) {
         var label = "send";
         this->debugLog->timerStart(label);
         this->debugLog->write(sprintf("> %s", rtrim(cmd)));
-        //echo "> " . cmd;
+
         var e;
         try {
             var connectLabel = "connect";
             this->debugLog->timerStart(connectLabel);
 
-            this->connect();
+            this->connect();// ensure connection
 
             this->debugLog->timerEnd(connectLabel);
 
-            var len = mb_strlen(cmd, "8bit");
+            var len = mb_strlen(cmd, "8bit");// strlen in bytes
 
             var writeLabel = "write";
             this->debugLog->timerStart(writeLabel);
@@ -51,7 +62,7 @@ class Connection {
 
             this->debugLog->timerEnd(writeLabel);
 
-            if (bytesWritten === len) {
+            if (bytesWritten === len) {// match!
                 var readLabel = "read";
                 this->debugLog->timerStart(readLabel);
 
@@ -71,9 +82,8 @@ class Connection {
         }
     }
 
-    public function receiveLine() -> array|bool {
+    private function receiveLine() -> array {
         var line = fgets(this->connResource);
-        //echo "< " . line . "\n";
         if false === line {
             throw new CommunicationException("Receive: Socket timed out or got an error");
         }
@@ -81,10 +91,10 @@ class Connection {
             throw new CommunicationException("Received malformed response: " . rawurlencode(line));
         }
 
-        return explode("\t", mb_substr(line, 0, -1));
+        return Command::decode(mb_substr(line, 0, -1));
     }
 
-    public function connect() {
+    public function connect() -> bool {
 
         if this->connected {
             return true;
@@ -100,11 +110,13 @@ class Connection {
         }
 
         var conn;
-        let conn = stream_socket_client("tcp://" . addr . "/", null, null, this->connectionTimeout, flags);
+        var errCode = 0, errMessage = "";
+        let conn = stream_socket_client("tcp://" . addr . "/", errCode, errMessage, this->connectionTimeout, flags);
         if !conn {
-            throw new ConnectionException("Zhandlersocket unable to connect");
+            throw new ConnectionException(sprintf("Zhandlersocket unable to connect (error %d: %s)", errCode, errMessage));
         }
 
+        // set stream timeout
         var timeoutSeconds, timeoutUSeconds;
         let timeoutSeconds  = floor(this->ioTimeout);
         let timeoutUSeconds  = floor((this->ioTimeout - timeoutSeconds) * 1000000);
@@ -116,7 +128,7 @@ class Connection {
         return true;
     }
 
-    public function disconnect() {
+    public function disconnect() -> bool {
         if !this->connected {
             return true;
         }
@@ -127,7 +139,8 @@ class Connection {
             return true;
         }
 
-        //stream_socket_shutdown(this->connResource, STREAM_SHUT_RDWR);
+        stream_socket_shutdown(this->connResource, STREAM_SHUT_RDWR);
+        // the line below fails constantly so I commented it out for now
         //fclose(this->connResource);
         let this->connResource = false;
 

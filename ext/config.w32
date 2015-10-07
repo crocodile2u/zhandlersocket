@@ -11,6 +11,6 @@ if (PHP_ZHANDLERSOCKET != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/zhandlersocket", "zexception.zep.c logger.zep.c client.zep.c command.zep.c communicationexception.zep.c connection.zep.c connectionexception.zep.c debuglogger.zep.c duplicateentryexception.zep.c encoder.zep.c index.zep.c nulllogger.zep.c whereclause.zep.c whereclausefilter.zep.c", "zhandlersocket");
+  ADD_SOURCES(configure_module_dirname + "/zhandlersocket", "zexception.zep.c logger.zep.c client.zep.c command.zep.c communicationexception.zep.c connection.zep.c connectionexception.zep.c debuglogger.zep.c duplicateentryexception.zep.c encoder.zep.c index.zep.c log.zep.c nulllogger.zep.c whereclause.zep.c whereclausefilter.zep.c", "zhandlersocket");
   ADD_FLAG("CFLAGS_ZHANDLERSOCKET", "/D ZEPHIR_RELEASE");
 }

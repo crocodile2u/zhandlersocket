@@ -124,7 +124,7 @@ class IndexTest extends BaseTest
         $this->assertEquals($id2, $row["id"]);
         $this->assertEquals(30, $row["view_count"]);
 
-//        var_dump($client->getDebugLog());
+//        echo $client->getDebugLog()->toString();
     }
 
     function testDeleteById() {
@@ -152,7 +152,7 @@ class IndexTest extends BaseTest
         $row = $index->findFirst($id1);
         $this->assertEquals($id1, $row["id"]);
 
-//        var_dump($client->getDebugLog());
+//        echo $client->getDebugLog()->toString();
     }
 
     private function assertInsert(Index $index, array $values) {

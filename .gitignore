@@ -1,3 +1,6 @@
+.temp
+compile.log
+compile-errors.log
 /ext/**/*.zep.*
 /ext/zhandlersocket/*
 /ext/zhandlersocket.*
