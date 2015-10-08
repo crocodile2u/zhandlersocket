@@ -22,13 +22,8 @@ class IndexTest extends BaseTest
         $id = $this->assertInsert($index, ["id" => null, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0]);
         $expected = ["id" => $id, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0];
 
-        $rows = $index->find($id);
-        $this->assertEquals(1, count($rows));
-        $this->assertEquals($expected, $rows[0]);
-
-        $row = $index->findFirst($id);
+        $row = $index->find($id);
         $this->assertEquals($expected, $row);
-        //echo "// " . __METHOD__ . "\n";
     }
 
     function testFindManyRows() {
@@ -37,7 +32,7 @@ class IndexTest extends BaseTest
         $id1 = $this->assertInsert($index, ["id" => null, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0]);
         $id2 = $this->assertInsert($index, ["id" => null, "genre" => "Comedy", "title" => "Dumb & Dumber", "view_count" => 0]);
 
-        $rows = $index->findMany([$id1, $id2], "id");
+        $rows = $index->findMany([$id1, $id2]);
         $map = array_combine(
             array_column($rows, "id"),
             $rows
@@ -77,7 +72,7 @@ class IndexTest extends BaseTest
         $id = $this->assertInsert($index, ["id" => null, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0]);
         $this->assertTrue($index->updateById($id, ["id" => $id, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 100]));
 
-        $row = $index->findFirst($id);
+        $row = $index->find($id);
         $this->assertEquals($id, $row["id"]);
         $this->assertEquals(100, $row["view_count"]);
     }
@@ -91,7 +86,7 @@ class IndexTest extends BaseTest
         $wc = $index->createWhereClause(WhereClause::GT, [0])->addFilter(WhereClause::EQ, "genre", "Comedy");
         $this->assertTrue($index->updateByWhereClause($wc, ["id" => $id2, "genre" => "Comedy", "title" => "Dumb & Dumber", "view_count" => 100]));
 
-        $row = $index->findFirst($id2);
+        $row = $index->find($id2);
         $this->assertEquals($id2, $row["id"]);
         $this->assertEquals(100, $row["view_count"]);
     }
@@ -101,7 +96,7 @@ class IndexTest extends BaseTest
         $id = $this->assertInsert($index, ["id" => null, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 10]);
         $this->assertTrue($index->incrementById($id, ["id" => 0, "view_count" => 10]));
 
-        $row = $index->findFirst($id);
+        $row = $index->find($id);
         $this->assertEquals($id, $row["id"]);
         $this->assertEquals(20, $row["view_count"]);
     }
@@ -116,11 +111,11 @@ class IndexTest extends BaseTest
         $wc = $index->createWhereClause(WhereClause::GT, [0])->addFilter(WhereClause::EQ, "genre", "Comedy");
         $this->assertTrue($index->incrementByWhereClause($wc, ["id" => 0, "view_count" => 10]));
 
-        $row = $index->findFirst($id1);
+        $row = $index->find($id1);
         $this->assertEquals($id1, $row["id"]);
         $this->assertEquals(10, $row["view_count"]);
 
-        $row = $index->findFirst($id2);
+        $row = $index->find($id2);
         $this->assertEquals($id2, $row["id"]);
         $this->assertEquals(30, $row["view_count"]);
 
@@ -132,7 +127,7 @@ class IndexTest extends BaseTest
         $id = $this->assertInsert($index, ["id" => null, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0]);
         $this->assertTrue($index->deleteById($id));
 
-        $row = $index->findFirst($id);
+        $row = $index->find($id);
         $this->assertFalse($row);
     }
 
@@ -146,10 +141,10 @@ class IndexTest extends BaseTest
         $wc = $index->createWhereClause(WhereClause::GT, [0])->addFilter(WhereClause::EQ, "genre", "Comedy");
         $this->assertTrue($index->deleteByWhereClause($wc));
 
-        $row = $index->findFirst($id2);
+        $row = $index->find($id2);
         $this->assertFalse($row);
 
-        $row = $index->findFirst($id1);
+        $row = $index->find($id1);
         $this->assertEquals($id1, $row["id"]);
 
 //        echo $client->getDebugLog()->toString();

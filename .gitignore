@@ -7,4 +7,8 @@ compile-errors.log
 /ext/.libs/zhandlersocket.*
 /ext/modules/zhandlersocket.*
 /ext/php_zhandlersocket.h
+/ext/kernel/.libs
+/ext/config.status
+/ext/kernel/extended/.libs
+/ext/autom4te.cache
 .idea

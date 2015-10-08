@@ -164,9 +164,9 @@ class Index {
         ksort(colValues);
         return colValues;
     }
-    // find rows by a bunc of IDs (equivalent of SQL IN clause)
-    public function findMany(array ids, column = null) -> array {
-        return this->createWhereClause("=", [0])->setIn(ids, column)->find();
+    // find rows by a bunch of IDs (equivalent of SQL IN clause)
+    public function findMany(array ids) -> array {
+        return this->createWhereClause("=", [0])->setIn(ids)->find();
     }
     
     public function createWhereClause(string op, keyValues) -> <WhereClause> {
@@ -185,12 +185,15 @@ class Index {
         return rows;
     }
 
-    public function find(id) -> array {
-        return this->createWhereClause("=", [id])->find();
-    }
-
-    public function findFirst(id) -> array|bool {
-        var rows = this->find(id);
+    public function find(id) -> array|bool {
+        var idArr;
+        if is_array(id) {
+            let idArr = id;
+        } else {
+            let idArr = [id];
+        }
+        var rows;
+        let rows = this->createWhereClause("=", idArr)->find();
         if rows {
             return rows[0];
         } else {
