@@ -56,7 +56,7 @@ Basic usage of HS is to select a row by key, update a row, delete a row. *Zhandl
 
 However, *ZhandlerSocket\Index* has also more to offer. HandlerSocket provides one with robust tools for quickly finding rows in a InnoDB table. Zhandlersocket ships with *WhereClause* class which enables you to specify criteria you want to apply to the selection.
 
-* *findByWhereClause()* - Zhandlersocket ships with a *Zhandlersocket\WhereClause* class which is capable of building the HS analogue of SQL WHERE and LIMIT clause together. You can create the *WhereClause* instance with *Index->createWhereClause()*, setup your filters and LIMIT/OFFSET, then either issue *Index->findByWhereClause()* or simply call the *WhereClause->find()* method (which is the preferable way).
+* *findByWhereClause()* - Zhandlersocket ships with a *Zhandlersocket\WhereClause* class which is capable of building the HS analogue of SQL WHERE and LIMIT clause together. You can create the *WhereClause* instance with *Index->createWhereClause()*, setup your filters and LIMIT/OFFSET, then either call *Index->findByWhereClause()* or simply do *WhereClause->find()* method (which is the preferable way).
 
 ## Manipulating data with *ZhandlerSocket\Index*:
 
@@ -73,3 +73,12 @@ For AUTO_INCREMENT mode, simply pass NULL as the value for the AUTO_INCREMENT co
 
 ## *Zhandlersocket\WhereClause* short reference
 
+*WhereClause* class is responsible for filtering and setting limits for selection from HS. HS is not only capable of selecting a single row by PRIMARY KEY, but also of selecting multiple rows based on criteria. 
+Basic usage: 
+
+```php
+// We have an index on "counter" column, and we want to find up to 10 rows with counter > 20   
+$index = $client->getIndex("test", "test", "counter_idx", ["id", "counter"]);
+$rows = $index->createWhereClause(">", 20)->setLimit(10)->find();
+```
+You can also perform some filtering of the results with *WhereClause->addFilter()*. This is _post-filtering_ which occurs on the result set obtained from index. Filtering can be done on all columns specified as *fcols* argument whe creating the index.

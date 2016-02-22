@@ -1,11 +1,11 @@
-srcdir = /home/vbolshov/projects/zhandlersocket/ext
-builddir = /home/vbolshov/projects/zhandlersocket/ext
-top_srcdir = /home/vbolshov/projects/zhandlersocket/ext
-top_builddir = /home/vbolshov/projects/zhandlersocket/ext
+srcdir = /home/vbolshov/PhpstormProjects/zhandlersocket/ext
+builddir = /home/vbolshov/PhpstormProjects/zhandlersocket/ext
+top_srcdir = /home/vbolshov/PhpstormProjects/zhandlersocket/ext
+top_builddir = /home/vbolshov/PhpstormProjects/zhandlersocket/ext
 EGREP = /bin/grep -E
 SED = /bin/sed
-CONFIGURE_COMMAND = './configure' '--enable-zhandlersocket'
-CONFIGURE_OPTIONS = '--enable-zhandlersocket'
+CONFIGURE_COMMAND = './configure' '--enable-zhandlersocket' 'CC=gcc' 'CFLAGS=-O0 '-g3''
+CONFIGURE_OPTIONS = '--enable-zhandlersocket' 'CC=gcc' 'CFLAGS=-O0 '-g3''
 SHLIB_SUFFIX_NAME = so
 SHLIB_DL_SUFFIX_NAME = so
 ZEND_EXT_TYPE = zend_extension
@@ -22,21 +22,21 @@ prefix = /usr
 exec_prefix = $(prefix)
 libdir = ${exec_prefix}/lib
 prefix = /usr
-phplibdir = /home/vbolshov/projects/zhandlersocket/ext/modules
-phpincludedir = /usr/include/php5
+phplibdir = /home/vbolshov/PhpstormProjects/zhandlersocket/ext/modules
+phpincludedir = /usr/include/php/20131226
 CC = gcc
-CFLAGS = -O2 -fvisibility=hidden -Wparentheses -flto -DZEPHIR_RELEASE=1
+CFLAGS = -O0 -g3
 CFLAGS_CLEAN = $(CFLAGS)
 CPP = gcc -E
 CPPFLAGS = -DHAVE_CONFIG_H
 CXX =
 CXXFLAGS =
 CXXFLAGS_CLEAN = $(CXXFLAGS)
-EXTENSION_DIR = /usr/lib/php5/20121212
-PHP_EXECUTABLE = /usr/bin/php
+EXTENSION_DIR = /usr/lib/php/20131226
+PHP_EXECUTABLE = /usr/bin/php5.6
 EXTRA_LDFLAGS =
 EXTRA_LIBS =
-INCLUDES = -I/usr/include/php5 -I/usr/include/php5/main -I/usr/include/php5/TSRM -I/usr/include/php5/Zend -I/usr/include/php5/ext -I/usr/include/php5/ext/date/lib
+INCLUDES = -I/usr/include/php/20131226 -I/usr/include/php/20131226/main -I/usr/include/php/20131226/TSRM -I/usr/include/php/20131226/Zend -I/usr/include/php/20131226/ext -I/usr/include/php/20131226/ext/date/lib
 LFLAGS =
 LDFLAGS =
 SHARED_LIBTOOL =
@@ -165,7 +165,7 @@ clean:
 distclean: clean
 	rm -f Makefile config.cache config.log config.status Makefile.objects Makefile.fragments libtool main/php_config.h main/internal_functions_cli.c main/internal_functions.c stamp-h sapi/apache/libphp$(PHP_MAJOR_VERSION).module sapi/apache_hooks/libphp$(PHP_MAJOR_VERSION).module buildmk.stamp Zend/zend_dtrace_gen.h Zend/zend_dtrace_gen.h.bak Zend/zend_config.h TSRM/tsrm_config.h
 	rm -f php5.spec main/build-defs.h scripts/phpize
-	rm -f ext/date/lib/timelib_config.h ext/mbstring/oniguruma/config.h ext/mbstring/libmbfl/config.h ext/mysqlnd/php_mysqlnd_config.h
+	rm -f ext/date/lib/timelib_config.h ext/mbstring/oniguruma/config.h ext/mbstring/libmbfl/config.h ext/oci8/oci8_dtrace_gen.h ext/oci8/oci8_dtrace_gen.h.bak
 	rm -f scripts/man1/phpize.1 scripts/php-config scripts/man1/php-config.1 sapi/cli/php.1 sapi/cgi/php-cgi.1 ext/phar/phar.1 ext/phar/phar.phar.1
 	rm -f sapi/fpm/php-fpm.conf sapi/fpm/init.d.php-fpm sapi/fpm/php-fpm.service sapi/fpm/php-fpm.8 sapi/fpm/status.html
 	rm -f ext/iconv/php_have_bsd_iconv.h ext/iconv/php_have_glibc_iconv.h ext/iconv/php_have_ibm_iconv.h ext/iconv/php_have_iconv.h ext/iconv/php_have_libiconv.h ext/iconv/php_iconv_aliased_libiconv.h ext/iconv/php_iconv_supports_errno.h ext/iconv/php_php_iconv_h_path.h ext/iconv/php_php_iconv_impl.h
@@ -177,82 +177,82 @@ distclean: clean
 
 .PHONY: all clean install distclean test
 .NOEXPORT:
-zhandlersocket.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket.c -o zhandlersocket.lo 
-kernel/main.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/main.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/main.c -o kernel/main.lo 
-kernel/memory.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/memory.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/memory.c -o kernel/memory.lo 
-kernel/exception.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/exception.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/exception.c -o kernel/exception.lo 
-kernel/hash.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/hash.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/hash.c -o kernel/hash.lo 
-kernel/debug.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/debug.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/debug.c -o kernel/debug.lo 
-kernel/backtrace.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/backtrace.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/backtrace.c -o kernel/backtrace.lo 
-kernel/object.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/object.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/object.c -o kernel/object.lo 
-kernel/array.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/array.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/array.c -o kernel/array.lo 
-kernel/extended/array.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/extended/array.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/extended/array.c -o kernel/extended/array.lo 
-kernel/string.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/string.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/string.c -o kernel/string.lo 
-kernel/fcall.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/fcall.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/fcall.c -o kernel/fcall.lo 
-kernel/extended/fcall.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/extended/fcall.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/extended/fcall.c -o kernel/extended/fcall.lo 
-kernel/require.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/require.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/require.c -o kernel/require.lo 
-kernel/file.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/file.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/file.c -o kernel/file.lo 
-kernel/operators.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/operators.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/operators.c -o kernel/operators.lo 
-kernel/math.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/math.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/math.c -o kernel/math.lo 
-kernel/concat.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/concat.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/concat.c -o kernel/concat.lo 
-kernel/variables.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/variables.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/variables.c -o kernel/variables.lo 
-kernel/filter.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/filter.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/filter.c -o kernel/filter.lo 
-kernel/iterator.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/iterator.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/iterator.c -o kernel/iterator.lo 
-kernel/time.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/time.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/time.c -o kernel/time.lo 
-kernel/exit.lo: /home/vbolshov/projects/zhandlersocket/ext/kernel/exit.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/kernel/exit.c -o kernel/exit.lo 
-zhandlersocket/zexception.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/zexception.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/zexception.zep.c -o zhandlersocket/zexception.lo 
-zhandlersocket/logger.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/logger.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/logger.zep.c -o zhandlersocket/logger.lo 
-zhandlersocket/client.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/client.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/client.zep.c -o zhandlersocket/client.lo 
-zhandlersocket/command.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/command.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/command.zep.c -o zhandlersocket/command.lo 
-zhandlersocket/communicationexception.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/communicationexception.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/communicationexception.zep.c -o zhandlersocket/communicationexception.lo 
-zhandlersocket/connection.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/connection.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/connection.zep.c -o zhandlersocket/connection.lo 
-zhandlersocket/connectionexception.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/connectionexception.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/connectionexception.zep.c -o zhandlersocket/connectionexception.lo 
-zhandlersocket/debuglogger.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/debuglogger.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/debuglogger.zep.c -o zhandlersocket/debuglogger.lo 
-zhandlersocket/duplicateentryexception.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/duplicateentryexception.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/duplicateentryexception.zep.c -o zhandlersocket/duplicateentryexception.lo 
-zhandlersocket/encoder.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/encoder.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/encoder.zep.c -o zhandlersocket/encoder.lo 
-zhandlersocket/index.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/index.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/index.zep.c -o zhandlersocket/index.lo 
-zhandlersocket/log.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/log.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/log.zep.c -o zhandlersocket/log.lo 
-zhandlersocket/nulllogger.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c -o zhandlersocket/nulllogger.lo 
-zhandlersocket/whereclause.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/whereclause.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/whereclause.zep.c -o zhandlersocket/whereclause.lo 
-zhandlersocket/whereclausefilter.lo: /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/whereclausefilter.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/projects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/projects/zhandlersocket/ext/zhandlersocket/whereclausefilter.zep.c -o zhandlersocket/whereclausefilter.lo 
+zhandlersocket.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket.c -o zhandlersocket.lo 
+kernel/main.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/main.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/main.c -o kernel/main.lo 
+kernel/memory.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/memory.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/memory.c -o kernel/memory.lo 
+kernel/exception.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/exception.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/exception.c -o kernel/exception.lo 
+kernel/hash.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/hash.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/hash.c -o kernel/hash.lo 
+kernel/debug.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/debug.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/debug.c -o kernel/debug.lo 
+kernel/backtrace.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/backtrace.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/backtrace.c -o kernel/backtrace.lo 
+kernel/object.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/object.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/object.c -o kernel/object.lo 
+kernel/array.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/array.c -o kernel/array.lo 
+kernel/extended/array.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/extended/array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/extended/array.c -o kernel/extended/array.lo 
+kernel/string.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/string.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/string.c -o kernel/string.lo 
+kernel/fcall.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/fcall.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/fcall.c -o kernel/fcall.lo 
+kernel/extended/fcall.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/extended/fcall.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/extended/fcall.c -o kernel/extended/fcall.lo 
+kernel/require.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/require.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/require.c -o kernel/require.lo 
+kernel/file.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/file.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/file.c -o kernel/file.lo 
+kernel/operators.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/operators.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/operators.c -o kernel/operators.lo 
+kernel/math.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/math.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/math.c -o kernel/math.lo 
+kernel/concat.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/concat.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/concat.c -o kernel/concat.lo 
+kernel/variables.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/variables.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/variables.c -o kernel/variables.lo 
+kernel/filter.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/filter.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/filter.c -o kernel/filter.lo 
+kernel/iterator.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/iterator.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/iterator.c -o kernel/iterator.lo 
+kernel/time.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/time.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/time.c -o kernel/time.lo 
+kernel/exit.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/exit.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/kernel/exit.c -o kernel/exit.lo 
+zhandlersocket/zexception.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/zexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/zexception.zep.c -o zhandlersocket/zexception.lo 
+zhandlersocket/logger.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/logger.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/logger.zep.c -o zhandlersocket/logger.lo 
+zhandlersocket/client.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/client.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/client.zep.c -o zhandlersocket/client.lo 
+zhandlersocket/command.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/command.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/command.zep.c -o zhandlersocket/command.lo 
+zhandlersocket/communicationexception.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/communicationexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/communicationexception.zep.c -o zhandlersocket/communicationexception.lo 
+zhandlersocket/connection.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/connection.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/connection.zep.c -o zhandlersocket/connection.lo 
+zhandlersocket/connectionexception.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/connectionexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/connectionexception.zep.c -o zhandlersocket/connectionexception.lo 
+zhandlersocket/debuglogger.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/debuglogger.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/debuglogger.zep.c -o zhandlersocket/debuglogger.lo 
+zhandlersocket/duplicateentryexception.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/duplicateentryexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/duplicateentryexception.zep.c -o zhandlersocket/duplicateentryexception.lo 
+zhandlersocket/encoder.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/encoder.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/encoder.zep.c -o zhandlersocket/encoder.lo 
+zhandlersocket/index.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/index.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/index.zep.c -o zhandlersocket/index.lo 
+zhandlersocket/log.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/log.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/log.zep.c -o zhandlersocket/log.lo 
+zhandlersocket/nulllogger.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/nulllogger.zep.c -o zhandlersocket/nulllogger.lo 
+zhandlersocket/whereclause.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/whereclause.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/whereclause.zep.c -o zhandlersocket/whereclause.lo 
+zhandlersocket/whereclausefilter.lo: /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/whereclausefilter.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/vbolshov/PhpstormProjects/zhandlersocket/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/vbolshov/PhpstormProjects/zhandlersocket/ext/zhandlersocket/whereclausefilter.zep.c -o zhandlersocket/whereclausefilter.lo 
 $(phplibdir)/zhandlersocket.la: ./zhandlersocket.la
 	$(LIBTOOL) --mode=install cp ./zhandlersocket.la $(phplibdir)
 

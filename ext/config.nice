@@ -2,8 +2,11 @@
 #
 # Created by configure
 
-CFLAGS='-O2 -fvisibility=hidden -Wparentheses -flto -DZEPHIR_RELEASE=1' \
+CFLAGS='-O0 -g3' \
 CC='gcc' \
 './configure' \
 '--enable-zhandlersocket' \
+'CC=gcc' \
+'CFLAGS=-O0 \
+'-g3'' \
 "$@"
