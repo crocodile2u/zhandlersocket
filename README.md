@@ -1,5 +1,15 @@
 # zhandlersocket
-Another PHP extension for communicating with handlersocket
+Another PHP extension for communicating with handlersocket. Built with Zephir: https://github.com/phalcon/zephir. Thus, you will have to install Zephir first to build zhandlersocket.
+Once you have Zephir installed and cloned the zhandlersocket repo:
+```bash
+cd <zhandlersocket directory>
+zephir build
+```
+After that, under _ext/modules_ you will find the zhandlersocket.so. Copy it to your PHP's extension_dir, add "extension=zhandlersocket.so" to your php.ini and restart your web-server. Check with the following command if zhandlersocket is there:
+```bash
+php -m
+```
+The output should, among other lines, contain "zhandlersocket".
 
 ## Short example
 
