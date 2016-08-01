@@ -82,7 +82,6 @@ class Command {
      */
     static public function compose(array tokens) -> string {
         var ret = self::encode(tokens);
-        //echo "compose: " . ret . "\n";
         return ret . "\n";
     }
 }

@@ -17,7 +17,6 @@ class IndexTest extends BaseTest
     }
 
     function testFindSingleRow() {
-        //echo __METHOD__ . "\n";
         $index = $this->createIndex($this->createClient());
         $id = $this->assertInsert($index, ["id" => null, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0]);
         $expected = ["id" => $id, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0];
@@ -27,7 +26,6 @@ class IndexTest extends BaseTest
     }
 
     function testFindManyRows() {
-        //echo __METHOD__ . "\n";
         $index = $this->createIndex($this->createClient());
         $id1 = $this->assertInsert($index, ["id" => null, "genre" => "Sci-Fi", "title" => "Star wars", "view_count" => 0]);
         $id2 = $this->assertInsert($index, ["id" => null, "genre" => "Comedy", "title" => "Dumb & Dumber", "view_count" => 0]);
@@ -44,7 +42,6 @@ class IndexTest extends BaseTest
             ],
             $map
         );
-        //echo "// " . __METHOD__ . "\n";
     }
 
     function testFindByWhereClause() {
@@ -118,8 +115,6 @@ class IndexTest extends BaseTest
         $row = $index->find($id2);
         $this->assertEquals($id2, $row["id"]);
         $this->assertEquals(30, $row["view_count"]);
-
-//        echo $client->getDebugLog()->toString();
     }
 
     function testDeleteById() {
@@ -146,8 +141,6 @@ class IndexTest extends BaseTest
 
         $row = $index->find($id1);
         $this->assertEquals($id1, $row["id"]);
-
-//        echo $client->getDebugLog()->toString();
     }
 
     private function assertInsert(Index $index, array $values) {

@@ -29,11 +29,11 @@ class Connection {
     /**
      * Constructor. Setup connection params, initialize Logger
      */
-    protected function __construct(string host = "127.0.0.1", int port, bool persistent = false) {
+    protected function __construct(string host = "127.0.0.1", int port, bool persistent = false, <Logger> logger = null) {
         let this->host = host;
         let this->port = port;
         let this->persistent = persistent;
-        let this->debugLog = new NullLogger();
+        let this->debugLog = logger ?: new FakeLogger();
     }
     /**
      * Send a command and receive response.
@@ -42,7 +42,7 @@ class Connection {
     public function send(string cmd) {
         var label = "send";
         this->debugLog->timerStart(label);
-        this->debugLog->write(sprintf("> %s", rtrim(cmd)));
+        this->debugLog->write(sprintf("[%s:%d] > %s", this->host, this->port, rtrim(cmd)));
 
         var e;
         try {
@@ -67,7 +67,7 @@ class Connection {
                 this->debugLog->timerStart(readLabel);
 
                 var responseLine = this->receiveLine();
-                this->debugLog->write(sprintf("< %s", join("\t", responseLine)));
+                this->debugLog->write(sprintf("[%s:%d] < %s", this->host, this->port, join("\t", responseLine)));
 
                 this->debugLog->timerEnd(readLabel);
                 this->debugLog->timerEnd(label);
@@ -147,15 +147,15 @@ class Connection {
         return true;
     }
 
-    public function __destruct() {
-        this->disconnect();
-    }
-
     public function setDebugLog(<Logger> logger) -> void {
         let this->debugLog = logger;
     }
 
     public function getDebugLog() -> <Logger> {
         return this->debugLog;
+    }
+
+    public function __destruct() {
+        this->disconnect();
     }
 }

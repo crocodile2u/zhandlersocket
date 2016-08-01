@@ -6,7 +6,7 @@
  * Time: 20:41
  */
 
-dl("zhandlersocket.so");
+//dl("zhandlersocket.so");
 
 define("ZHS_TABLE_MOVIE", "zhandlersocket_movie");
 

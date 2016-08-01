@@ -178,7 +178,6 @@ class Index {
         var connection = this->client->getReadConnection();
         var tokens = wc->toArray();
         array_unshift(tokens, this->getNum());
-        //var_dump(tokens);
         var cmd = Command::compose(tokens);
         var response = connection->send(cmd);
         var rows = this->parseFindResponse(response);

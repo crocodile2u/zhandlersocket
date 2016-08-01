@@ -14,7 +14,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
     static $pdo;
     protected function createClient() {
         $ret = new Client(ZHS_HOST, ZHS_PORT_READ, ZHS_PORT_WRITE);
-        $ret->setEnableDebug(true);
+        $ret->setLogger(Logger::create(true));
         return $ret;
     }
     protected function createIndex(Client $client) {

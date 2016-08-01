@@ -10,15 +10,17 @@ class DebugLogger extends Logger {
     // @var float[]
     private timers = [];
     // @implements Logger
-    public function write(string message) -> void {
+    public function write(string message) -> bool {
         let this->messages[] = message;
+        return true;
     }
     // @implements Logger
-    public function timerStart(string label) -> void {
+    public function timerStart(string label) -> bool {
         let this->timers[label] = microtime(true);
+        return true;
     }
     // @implements Logger
-    public function timerEnd(string label) -> void {
+    public function timerEnd(string label) -> bool {
         if !isset this->timers[label] {
             let this->timers[label] = 0.0;
         }
@@ -27,6 +29,7 @@ class DebugLogger extends Logger {
         var msg = sprintf("%s: %d us elapsed", label, elapsedUs);
         this->write(msg);
         unset this->timers[label];
+        return true;
     }
     // @implements Logger
     public function export() -> array {

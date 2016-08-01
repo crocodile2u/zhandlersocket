@@ -5,11 +5,11 @@ abstract class Logger {
         if debug {
             return new DebugLogger();
         } else {
-            return new NullLogger();
+            return new FakeLogger();
         }
     }
-    public abstract function write(string message) -> void;
-    public abstract function timerStart(string label) -> void;
-    public abstract function timerEnd(string label) -> void;
+    public abstract function write(string message) -> bool;
+    public abstract function timerStart(string label) -> bool;
+    public abstract function timerEnd(string label) -> bool;
     public abstract function export() -> array;
 }

@@ -23,8 +23,8 @@ class Client {
     private usePersistentConnection = true {
         get, set
     };
-    // @var bool
-    private enableDebug = false;
+    // @var Logger
+    private logger;
     /**
      * Constructor. Setup connection parameters.
      * Connection is not established here, this is done only when we need to issue a request
@@ -33,6 +33,7 @@ class Client {
         let this->host = host;
         let this->portRead = portRead;
         let this->portWrite = portWrite;
+        let this->logger = new FakeLogger();
     }
     /**
      * get create indexes count
@@ -61,8 +62,7 @@ class Client {
     public function getReadConnection() -> <Connection> {
         if null === this->readConnection {
             if null === this->writeConnection {
-                let this->readConnection = new Connection(this->host, this->portRead, this->getUsePersistentConnection());
-                this->readConnection->setDebugLog(Logger::create(this->enableDebug));
+                let this->readConnection = this->createConnection(this->portRead);
             } else {
                 // we have a write connection: no need to establish a new one for reading
                 let this->readConnection = this->writeConnection;
@@ -73,8 +73,7 @@ class Client {
 
     public function getWriteConnection() -> <Connection> {
         if null === this->writeConnection {
-            let this->writeConnection = new Connection(this->host, this->portWrite, this->getUsePersistentConnection());
-            this->writeConnection->setDebugLog(Logger::create(this->enableDebug));
+            let this->writeConnection = this->createConnection(this->portWrite);
         }
         return this->writeConnection;
     }
@@ -82,27 +81,23 @@ class Client {
      * Enables or disables debug logging (disabled by default).
      * When enabled, debug informarion will be collected and you will be able to get it later with getDebugLog()
      */
-    public function setEnableDebug(bool flag) {
-        let this->enableDebug = flag;
+    public function setLogger(<Logger> logger) {
+        let this->logger = logger;
         if this->readConnection {
-            this->readConnection->setDebugLog(Logger::create(flag));
+            this->readConnection->setDebugLog(this->logger);
         }
         if this->writeConnection {
-            this->writeConnection->setDebugLog(Logger::create(flag));
+            this->writeConnection->setDebugLog(this->logger);
         }
     }
     /**
      * Get the debug log
      */
-    public function getDebugLog() -> <Log> {
-        var ret;
-        let ret = new Log();
-        if this->readConnection {
-            ret->setRead(join("\n", this->readConnection->getDebugLog()->export()));
-        }
-        if this->writeConnection {
-            ret->setWrite(join("\n", this->writeConnection->getDebugLog()->export()));
-        }
-        return ret;
+    public function getDebugLog() -> <Logger> {
+        return this->logger;
+    }
+
+    protected function createConnection(int port) {
+        return new Connection(this->host, this->portWrite, this->getUsePersistentConnection(), this->logger);
     }
 }
