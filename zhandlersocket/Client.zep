@@ -97,7 +97,7 @@ class Client {
         return this->logger;
     }
 
-    protected function createConnection(int port) {
-        return new Connection(this->host, this->portWrite, this->getUsePersistentConnection(), this->logger);
+    protected function createConnection(int port) -> <Connection> {
+        return new Connection(this->host, port, this->getUsePersistentConnection(), this->logger);
     }
 }
