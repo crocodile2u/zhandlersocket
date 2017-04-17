@@ -34,7 +34,7 @@ class Encoder {
     }
 
     public static function decode(data) -> string|null {
-        if 0x00 === data {
+        if 0x00 === ord(data) {
             return null;
         }
 
