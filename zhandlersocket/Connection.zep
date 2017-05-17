@@ -111,7 +111,7 @@ class Connection {
 
         var conn;
         var errCode = 0, errMessage = "";
-        let conn = stream_socket_client("tcp://" . addr . "/", errCode, errMessage, this->connectionTimeout, flags);
+        let conn = stream_socket_client("tcp://" . addr, errCode, errMessage, this->connectionTimeout, flags);
         if !conn {
             throw new ConnectionException(sprintf("Zhandlersocket unable to connect (error %d: %s)", errCode, errMessage));
         }
