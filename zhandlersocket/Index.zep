@@ -29,7 +29,7 @@ class Index {
     /**
      * Constructor. Set up index params.
      */
-    protected function __construct(<Client> client, string dbname, string table, string idx, array cols, fcols = null) {
+    public function __construct(<Client> client, string dbname, string table, string idx, array cols, fcols = null) {
         let this->client = client;
         let this->dbname = dbname;
         let this->table = table;

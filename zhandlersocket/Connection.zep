@@ -29,7 +29,7 @@ class Connection {
     /**
      * Constructor. Setup connection params, initialize Logger
      */
-    protected function __construct(string host = "127.0.0.1", int port, bool persistent = false, <Logger> logger = null) {
+    public function __construct(string host = "127.0.0.1", int port, bool persistent = false, <Logger> logger = null) {
         let this->host = host;
         let this->port = port;
         let this->persistent = persistent;
